@@ -1,4 +1,4 @@
-const dragon = document.getElementById("dragon1");
+const dragon = document.getElementById("dragonHitbox");
 
 dragon.addEventListener("click", function () {
 
