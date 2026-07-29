@@ -3,57 +3,246 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+
 <title>Dragon</title>
+
 <style>
-html,body{margin:0;height:100%;overflow:hidden;background:#000;font-family:Arial}
-.scene{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;transition:opacity .8s}
-.scene img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
-.text{position:absolute;top:8%;left:50%;transform:translateX(-50%);color:#fff;font-size:2rem;
-text-shadow:0 0 15px #4cf}
-#dragonHit{position:absolute;left:25%;top:28%;width:50%;height:45%;cursor:pointer}
-.hidden{opacity:0;pointer-events:none}
-.btn{position:absolute;padding:12px 28px;border:2px solid #fff;color:#fff;background:rgba(0,0,0,.25);
-border-radius:30px;text-decoration:none;font-size:22px;transition:.3s}
-.btn:hover{background:rgba(255,255,255,.2);box-shadow:0 0 20px #8df}
-#ocean{left:17%;top:40%}
-#moon{right:17%;top:40%}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html,body{
+width:100%;
+height:100%;
+overflow:hidden;
+background:black;
+font-family:Arial,Helvetica,sans-serif;
+}
+
+.page{
+position:absolute;
+width:100%;
+height:100%;
+left:0;
+top:0;
+transition:opacity .8s;
+}
+
+.hidden{
+opacity:0;
+pointer-events:none;
+}
+
+.page img{
+position:absolute;
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+.title{
+
+position:absolute;
+
+top:5%;
+
+left:50%;
+
+transform:translateX(-50%);
+
+color:white;
+
+font-size:40px;
+
+letter-spacing:2px;
+
+text-shadow:
+0 0 10px cyan,
+0 0 25px cyan;
+
+z-index:5;
+
+}
+
+#dragon{
+
+position:absolute;
+
+/* عدلها لاحقاً إذا لزم */
+
+left:22%;
+
+top:20%;
+
+width:56%;
+
+height:62%;
+
+cursor:pointer;
+
+z-index:10;
+
+}
+
+.choice{
+
+position:absolute;
+
+padding:14px 35px;
+
+font-size:28px;
+
+border:2px solid white;
+
+border-radius:40px;
+
+color:white;
+
+background:rgba(0,0,0,.25);
+
+backdrop-filter:blur(3px);
+
+transition:.3s;
+
+cursor:pointer;
+
+text-decoration:none;
+
+}
+
+.choice:hover{
+
+background:rgba(255,255,255,.2);
+
+box-shadow:0 0 20px cyan;
+
+transform:scale(1.08);
+
+}
+
+#ocean{
+
+left:16%;
+
+top:42%;
+
+}
+
+#moon{
+
+right:16%;
+
+top:42%;
+
+}
+
+.fade{
+
+animation:fade .8s;
+
+}
+
+@keyframes fade{
+
+from{
+
+opacity:0;
+
+}
+
+to{
+
+opacity:1;
+
+}
+
+}
+
 </style>
+
 </head>
+
 <body>
 
-<div id="page1" class="scene">
-<img src="IMG_5395.png" alt="">
-<div class="text">Click on the dragon</div>
-<div id="dragonHit"></div>
+<div id="page1" class="page fade">
+
+<img src="IMG_5395.png">
+
+<div class="title">
+
+Click on the dragon
+
 </div>
 
-<div id="page2" class="scene hidden">
-<img src="IMG_5396.png" alt="">
-<div class="text">Choose one option</div>
-<a href="#" id="ocean" class="btn">Ocean</a>
-<a href="#" id="moon" class="btn">Moon</a>
+<div id="dragon"></div>
+
+</div>
+
+<div id="page2" class="page hidden">
+
+<img src="IMG_5396.png">
+
+<div class="title">
+
+Choose one option
+
+</div>
+
+<a href="#" id="ocean" class="choice">
+
+Ocean
+
+</a>
+
+<a href="#" id="moon" class="choice">
+
+Moon
+
+</a>
+
 </div>
 
 <script>
-const p1=document.getElementById("page1");
-const p2=document.getElementById("page2");
-document.getElementById("dragonHit").onclick=()=>{
- p1.style.opacity="0";
- setTimeout(()=>{
-   p1.classList.add("hidden");
-   p2.classList.remove("hidden");
-   p2.style.opacity="1";
- },800);
+ const page1=document.getElementById("page1");
+const page2=document.getElementById("page2");
+
+const dragon=document.getElementById("dragon");
+
+dragon.onclick=function(){
+
+page1.style.opacity="0";
+
+setTimeout(function(){
+
+page1.classList.add("hidden");
+
+page2.classList.remove("hidden");
+
+page2.classList.add("fade");
+
+},800);
+
 };
-document.getElementById("moon").onclick=(e)=>{
- e.preventDefault();
- alert("Moon selected (we will add functionality later).");
+
+document.getElementById("moon").onclick=function(e){
+
+e.preventDefault();
+
+alert("Moon path coming soon.");
+
 };
-document.getElementById("ocean").onclick=(e)=>{
- e.preventDefault();
- alert("Ocean selected (we will add functionality later).");
+
+document.getElementById("ocean").onclick=function(e){
+
+e.preventDefault();
+
+alert("Ocean path coming soon.");
+
 };
-</script>
+ </script>
 
 </body>
 </html>
