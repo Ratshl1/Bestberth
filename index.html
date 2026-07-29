@@ -29,11 +29,15 @@ font-family:Arial,Helvetica,sans-serif;
 .page{
 
 position:fixed;
-left:0;
-top:0;
+inset:0;
 width:100vw;
-height:100vh;
+height:100dvh;
+overflow:hidden;
 transition:opacity .8s;
+
+display:flex;
+justify-content:center;
+align-items:center;
 
 }
 
@@ -46,27 +50,26 @@ pointer-events:none;
 
 .page img{
 
-position:fixed;
-left:0;
-top:0;
-width:100vw;
-height:100vh;
+position:absolute;
+inset:0;
+width:100%;
+height:100%;
 object-fit:cover;
-object-position:center;
+z-index:0;
 
 }
 
 .title{
 
 position:absolute;
-top:5%;
+top:8%;
 left:50%;
 transform:translateX(-50%);
+z-index:100;
 color:white;
 font-size:42px;
 font-weight:bold;
 letter-spacing:2px;
-z-index:20;
 
 text-shadow:
 0 0 10px #6ff,
@@ -134,8 +137,9 @@ text-shadow:
 
 #ocean{
 
-left:18%;
-top:31%;
+left:16%;
+top:46%;
+font-size:42px;
 
 }
 
@@ -143,8 +147,9 @@ top:31%;
 
 #moon{
 
-right:18%;
-top:31%;
+right:16%;
+top:46%;
+font-size:42px;
 
 }
 
