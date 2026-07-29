@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width,initial-scale=1">
 
 <title>Dragon</title>
@@ -15,55 +17,61 @@ box-sizing:border-box;
 }
 
 html,body{
-width:100%;
-height:100%;
+
+width:100vw;
+height:100vh;
 overflow:hidden;
-background:black;
+background:#000;
 font-family:Arial,Helvetica,sans-serif;
+
 }
 
 .page{
-position:absolute;
-width:100%;
-height:100%;
+
+position:fixed;
 left:0;
 top:0;
+width:100vw;
+height:100vh;
 transition:opacity .8s;
+
 }
 
 .hidden{
+
 opacity:0;
 pointer-events:none;
+
 }
 
 .page img{
-position:absolute;
-width:100%;
-height:100%;
+
+position:fixed;
+left:0;
+top:0;
+width:100vw;
+height:100vh;
 object-fit:cover;
+object-position:center;
+
 }
 
 .title{
 
 position:absolute;
-
 top:5%;
-
 left:50%;
-
 transform:translateX(-50%);
-
 color:white;
-
-font-size:40px;
-
+font-size:42px;
+font-weight:bold;
 letter-spacing:2px;
+z-index:20;
 
 text-shadow:
-0 0 10px cyan,
-0 0 25px cyan;
-
-z-index:5;
+0 0 10px #6ff,
+0 0 20px #6ff,
+0 0 40px #09f;
 
 }
 
@@ -71,71 +79,94 @@ z-index:5;
 
 position:absolute;
 
-/* عدلها لاحقاً إذا لزم */
-
 left:22%;
-
 top:20%;
-
 width:56%;
-
 height:62%;
 
 cursor:pointer;
 
-z-index:10;
+z-index:30;
 
 }
+
+/* الكلمات */
 
 .choice{
 
 position:absolute;
 
-padding:14px 35px;
-
-font-size:28px;
-
-border:2px solid white;
-
-border-radius:40px;
-
 color:white;
 
-background:rgba(0,0,0,.25);
+font-size:42px;
 
-backdrop-filter:blur(3px);
-
-transition:.3s;
-
-cursor:pointer;
+font-weight:bold;
 
 text-decoration:none;
+
+z-index:40;
+
+transition:.35s;
+
+text-shadow:
+
+0 0 10px #6ff,
+0 0 20px #6ff,
+0 0 35px #09f;
+
+animation:glow 2s infinite alternate;
 
 }
 
 .choice:hover{
 
-background:rgba(255,255,255,.2);
+transform:scale(1.15);
 
-box-shadow:0 0 20px cyan;
+text-shadow:
 
-transform:scale(1.08);
+0 0 15px white,
+0 0 30px cyan,
+0 0 60px cyan;
 
 }
+
+/* الجناح الأيسر */
 
 #ocean{
 
-left:16%;
-
-top:42%;
+left:18%;
+top:31%;
 
 }
 
+/* الجناح الأيمن */
+
 #moon{
 
-right:16%;
+right:18%;
+top:31%;
 
-top:42%;
+}
+
+@keyframes glow{
+
+from{
+
+text-shadow:
+0 0 8px cyan,
+0 0 18px cyan,
+0 0 30px #08f;
+
+}
+
+to{
+
+text-shadow:
+0 0 18px white,
+0 0 35px cyan,
+0 0 70px cyan;
+
+}
 
 }
 
@@ -147,17 +178,8 @@ animation:fade .8s;
 
 @keyframes fade{
 
-from{
-
-opacity:0;
-
-}
-
-to{
-
-opacity:1;
-
-}
+from{opacity:0;}
+to{opacity:1;}
 
 }
 
@@ -191,13 +213,13 @@ Choose one option
 
 </div>
 
-<a href="#" id="ocean" class="choice">
+<a id="ocean" class="choice" href="#">
 
 Ocean
 
 </a>
 
-<a href="#" id="moon" class="choice">
+<a id="moon" class="choice" href="#">
 
 Moon
 
@@ -210,12 +232,14 @@ Moon
 const page2=document.getElementById("page2");
 
 const dragon=document.getElementById("dragon");
+const moon=document.getElementById("moon");
+const ocean=document.getElementById("ocean");
 
-dragon.onclick=function(){
+dragon.addEventListener("click",()=>{
 
 page1.style.opacity="0";
 
-setTimeout(function(){
+setTimeout(()=>{
 
 page1.classList.add("hidden");
 
@@ -225,21 +249,45 @@ page2.classList.add("fade");
 
 },800);
 
-};
+});
 
-document.getElementById("moon").onclick=function(e){
+moon.addEventListener("mouseenter",()=>{
+
+moon.style.color="#9cf";
+
+});
+
+moon.addEventListener("mouseleave",()=>{
+
+moon.style.color="white";
+
+});
+
+ocean.addEventListener("mouseenter",()=>{
+
+ocean.style.color="#9cf";
+
+});
+
+ocean.addEventListener("mouseleave",()=>{
+
+ocean.style.color="white";
+
+});
+
+moon.onclick=function(e){
 
 e.preventDefault();
 
-alert("Moon path coming soon.");
+/* سنضيف لاحقاً */
 
 };
 
-document.getElementById("ocean").onclick=function(e){
+ocean.onclick=function(e){
 
 e.preventDefault();
 
-alert("Ocean path coming soon.");
+/* سنضيف لاحقاً */
 
 };
  </script>
